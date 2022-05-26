@@ -3,9 +3,11 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
 import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM';
 import * as Proj from 'ol/proj'
+import VectorSource from 'ol/source/Vector';
 
 export const DEFAULT_HEIGHT = '500px';
 export const DEFAULT_WIDTH = '500px';
@@ -50,8 +52,18 @@ export class OlMapComponent implements OnInit {
       })
     })
 
+    // cambia el cursor al estar sobre un marcker
+    this.map.on('pointermove', ( e ) => {
+      if (this.map.hasFeatureAtPixel( e.pixel )) {
+        this.map.getViewport().style.cursor = 'pointer';
+      } else {
+        this.map.getViewport().style.cursor = 'inherit';
+      }
+    });
+
   }
 
+  //establecer tamaño del div
   setSize() {
     if (this.divMap) {
       const style = this.divMap.nativeElement.style;
@@ -59,6 +71,11 @@ export class OlMapComponent implements OnInit {
       style.height = this.height.toString() || DEFAULT_HEIGHT;
 
     }
+  }
+
+  //Agregar marcadores
+  setMaker( vector: VectorLayer<any>) {
+    this.map.addLayer( vector );
   }
 
 }
