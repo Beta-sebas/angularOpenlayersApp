@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OlMapComponent } from './components/ol-map/ol-map.component';
+import { VerMapaComponent } from './pages/ver-mapa/ver-mapa.component';
 
 const routes: Routes = [
   {
     path:'',
     children: [
-      {path:'map', component: OlMapComponent},
+      {path:'map', component: VerMapaComponent},
       {path: '**', redirectTo: 'map'}
     ]
   }
