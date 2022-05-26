@@ -37,7 +37,8 @@ export class OlMakerComponent implements OnInit {
   ngOnInit(): void {
 
     const maker = new Feature({
-      geometry: new Point(Proj.fromLonLat([this.lon, this.lat]))
+      geometry: new Point(Proj.fromLonLat([this.lon, this.lat])),
+      name: this.text
     });
 
     maker.setStyle(
