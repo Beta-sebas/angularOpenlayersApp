@@ -18,8 +18,8 @@ Install dependencies:
 
 In your Angular project folder.
 
-*npm i ol
-*npm i --save-dev @types/ol
+* _npm i ol_
+* _npm i --save-dev @types/ol_
 
 ## Use it like a Module in a project
 
