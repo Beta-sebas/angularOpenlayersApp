@@ -8,7 +8,8 @@ import VectorLayer from 'ol/layer/Vector';
 import XYZ from 'ol/source/XYZ';
 import OSM from 'ol/source/OSM';
 import * as Proj from 'ol/proj'
-import VectorSource from 'ol/source/Vector';
+import { Coordinate } from 'ol/coordinate';
+import { toLonLat } from 'ol/proj';
 
 export const DEFAULT_HEIGHT = '500px';
 export const DEFAULT_WIDTH = '500px';
@@ -29,15 +30,13 @@ export class OlMapComponent implements OnInit {
 
   //Referencia al div contenedor del ol-map
   @ViewChild('divMap') divMap!: ElementRef<HTMLDivElement>
-  //Referencia a el popup
-  //@ViewChild( 'divpop' ) divpop!: ElementRef<HTMLElement>
-
 
   map!: Map;
-  popup!: Overlay
-  popupR!: Overlay
-  divpop!: HTMLElement
-  divpopR!: HTMLElement
+  popup!: Overlay;
+  popupR!: Overlay;
+  divpop!: HTMLElement;
+  divpopR!: HTMLElement;
+  coordenadas!: Coordinate;
 
   constructor() { }
 
@@ -46,20 +45,19 @@ export class OlMapComponent implements OnInit {
     //Referencia a el popup
     this.divpop = document.getElementById('popup')!;
     this.divpopR = document.getElementById('popupR')!;
-    //this.divpop! = document.getElementById('popup');
+
+    //Instancia de Overlay
     this.popup = new Overlay({
       element: this.divpop,
       positioning: 'bottom-center',
       stopEvent: false
     })
 
+    //Instancia de Overlay
     this.popupR = new Overlay({
       element: this.divpopR,
-      autoPan: {
-        animation: {
-          duration: 250,
-        },
-      }
+      positioning: 'bottom-center',
+      stopEvent: false
     })
 
   }
@@ -68,6 +66,7 @@ export class OlMapComponent implements OnInit {
 
     this.setSize();
 
+    //Instancia del mapa
     this.map = new Map({
       target: 'map',
       layers: [
@@ -85,33 +84,44 @@ export class OlMapComponent implements OnInit {
     this.map.addOverlay(this.popupR);
 
     this.map.on('click', (e) => {
-      console.log(e);
-
+      //console.log(e);
       const feacture = this.map.forEachFeatureAtPixel(e.pixel, (feacture) => {
         return feacture;
       });
       if (feacture) {
+        const coor = toLonLat(e.coordinate)
         this.popup.setPosition(e.coordinate);
-        this.divpop.innerHTML = ` <button type="button" class="btn-close" data-bs-dismiss=""></button> ${e.coordinate}`;
+        this.coordenadas = coor;
+      } else {
+        this.popup.setPosition(undefined);
       }
     });
 
     this.map.getViewport().addEventListener('contextmenu', (evt) => {
       evt.preventDefault();
-      console.log(this.map.getEventCoordinate(evt));
+      //console.log(this.map.getEventCoordinate(evt));
       const feacture = this.map.forEachFeatureAtPixel(this.map.getEventPixel(evt), (feacture) => {
         return feacture;
       });
       if (feacture) {
         this.popupR.setPosition(this.map.getEventCoordinate(evt));
-        this.divpopR.innerHTML = feacture.get('name');
-        console.log(feacture.get('name'));
-
+        this.divpopR.innerHTML = `<h6 class="card-title">${feacture.get('name')}</h6>`
+      } else {
+        this.popupR.setPosition(undefined);
       }
 
     });
 
-    // cambia el cursor al estar sobre un marcker
+    this.map.getViewport().addEventListener('mouseup', (evt) => {
+
+      if (evt.button == 1) {
+        const coordinate = toLonLat(this.map.getEventCoordinate(evt));
+        this.popup.setPosition(this.map.getEventCoordinate(evt));
+        this.coordenadas = coordinate;
+      }
+    });
+
+    // cambia el cursor al estar sobre un marker
     this.map.on('pointermove', (e) => {
       if (this.map.hasFeatureAtPixel(e.pixel)) {
         this.map.getViewport().style.cursor = 'pointer';
@@ -120,7 +130,7 @@ export class OlMapComponent implements OnInit {
       }
     });
 
-    // Close the popup when the map is moved
+    // Cerrar el popup cuando se navega por el map
     this.map.on('movestart', () => {
       this.popupR.setPosition(undefined);
       this.popup.setPosition(undefined);
@@ -129,14 +139,10 @@ export class OlMapComponent implements OnInit {
   }
 
   evento(e: MouseEvent) {
-    console.log(e.button);
-    if (e.button == 2) {
-      this.clickright();
-    }
-
+    //console.log(e.button);
   }
 
-  //establecer tamaño del div
+  //establecer tamaño del div del map
   setSize() {
     if (this.divMap) {
       const style = this.divMap.nativeElement.style;
@@ -146,14 +152,9 @@ export class OlMapComponent implements OnInit {
     }
   }
 
-  //Agregar marcadores
+  //Agregar marcadores al map
   setMaker(vector: VectorLayer<any>) {
     this.map.addLayer(vector);
   }
-
-  clickright() {
-
-  }
-
 
 }

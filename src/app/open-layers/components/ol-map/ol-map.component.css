@@ -1,4 +1,4 @@
-.ol-popup {
+.ol-popupR {
     position: absolute;
     background-color: white;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -7,7 +7,7 @@
     border: 1px solid #cccccc;
     bottom: 12px;
     left: -50px;
-    min-width: 100px;
+    min-width: 120px;
   }
   .ol-popup:after, .ol-popup:before {
     top: 100%;

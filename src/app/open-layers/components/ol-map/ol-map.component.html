@@ -1,5 +1,9 @@
-<div id="map" class="map" #divMap (mouseup)="evento( $event )">
-    <div id="popup" class="alert alert-dismissible alert-secondary"></div>
-    <div id="popupR" class="ol-popup"></div>
+<div id="map" class="map" #divMap (mouseup)="evento($event)">
+  <div id="popup" class="card ol-popup" >
+    <div class="card-body">
+      <!-- <app-popup [Lat]="lat" [Lon]="lon"> </app-popup> -->
+      <app-popup [coordenadas]="coordenadas"> </app-popup>
+    </div>
+  </div>
+  <div id="popupR" class="text-center ol-popupR"></div>
 </div>
-

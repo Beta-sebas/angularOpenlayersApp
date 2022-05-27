@@ -1,27 +1,52 @@
 # AngularOpenlayersApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+Aplicación web creada con _Angular_ y _OpenLayers_, que ha sido construida completamente de forma modular utilizando LazyLoad, en ella se implementa un Módulo específico para integrar OpenLayers de manera fácil a proyectos de Angular utilizando componentes.
+ 
+Características de la aplicación
 
-## Development server
+* _Desarrollo Modular_
+* _Lazy Load_
+* _OpenLayers Markers_
+* _OpenLayers Popup_
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Instalación ⚙️
 
-## Code scaffolding
+Install dependencies:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+In your Angular project folder.
+
+npm i ol
+npm i --save-dev @types/ol
+
+## Use it like a Module in a project
+
+Move open-layers folder to app folder in your Angular project. Import OpenLayersModule Module in modules when need the openLayers Map:
+
+import { OpenLayersModule } from './open-layers/open-layers.module';
+
+Finally, on index.html import OL css:
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+
+## Comenzando 🚀
+
+Ejecuta `ng serve -o` en la ventana de comando para ejecutar el sevidor de desarrollo. En el navegador se abrirá `http://localhost:4200/` una vez termine la compilación. La aplicación se actualizará automaticamente en el servidor si realizas cambios en los archivos.
+
+## Construido con 🛠️
+
+* [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+* [NodeJs](https://nodejs.org/es/) vesion 16.14
+* [OpenLayers](https://github.com/openlayers/openlayers) vesion 6.14.1
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejecuta `ng build` para desplegar la app. Que se guardará en el directorio `dist/`.
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## App Deploy 💻
+in build...
+## Autor ✒️
+
+* **Juan Sebastian Betancourt**  - [Beta-sebas](https://github.com/Beta-sebas)
