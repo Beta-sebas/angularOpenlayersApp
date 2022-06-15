@@ -6,6 +6,9 @@ import { OlMapComponent } from './components/ol-map/ol-map.component';
 import { VerMapaComponent } from './pages/ver-mapa/ver-mapa.component';
 import { OlMakerComponent } from './components/ol-maker/ol-maker.component';
 import { PopupComponent } from './components/popup/popup.component';
+import { VerMarkersComponent } from './pages/ver-markers/ver-markers.component';
+import { InputMarkerComponent } from './components/input-marker/input-marker.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { PopupComponent } from './components/popup/popup.component';
     OlMapComponent,
     VerMapaComponent,
     OlMakerComponent,
-    PopupComponent
+    PopupComponent,
+    VerMarkersComponent,
+    InputMarkerComponent
   ],
   imports: [
     CommonModule,
-    OpenLayersRoutingModule
+    OpenLayersRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class OpenLayersModule { }
