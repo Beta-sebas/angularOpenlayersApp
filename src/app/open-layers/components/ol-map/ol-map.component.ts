@@ -10,6 +10,7 @@ import OSM from 'ol/source/OSM';
 import * as Proj from 'ol/proj'
 import { Coordinate } from 'ol/coordinate';
 import { toLonLat } from 'ol/proj';
+import BaseLayer from 'ol/layer/Base';
 
 export const DEFAULT_HEIGHT = '500px';
 export const DEFAULT_WIDTH = '500px';
@@ -155,6 +156,14 @@ export class OlMapComponent implements OnInit {
   //Agregar marcadores al map
   setMaker(vector: VectorLayer<any>) {
     this.map.addLayer(vector);
+  }
+
+  getMarcadores( ) {
+    return this.map.getLayers().getArray();
+  }
+
+  deleteLayer(  layer: BaseLayer ) {
+    return this.map.removeLayer( layer );
   }
 
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Marcador } from '../../interfaces/marcador.interface';
 import { OpenLayerService } from '../../services/open-layer.service';
 import { tap } from 'rxjs';
+import { OlMapComponent } from '../../components/ol-map/ol-map.component';
 
 @Component({
   selector: 'app-ver-markers',
@@ -11,6 +12,8 @@ import { tap } from 'rxjs';
 })
 export class VerMarkersComponent implements OnInit {
 
+
+  @ViewChild(OlMapComponent) mapa!: OlMapComponent;
   mostrarSugerencias: boolean = false;
   limpiar: boolean = false;
   termino: string = "";
@@ -29,6 +32,22 @@ export class VerMarkersComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  ngAfterViewInit(): void {
+    
+  }
+
+  getMarcadores(indice: number){
+    console.log(indice);
+
+    const MarcadoresActivos = this.mapa.getMarcadores();
+    this.mapa.deleteLayer( MarcadoresActivos[indice+1]);
+    this.marcadores.splice(indice,1);
+
+    if (this.marcadores.length == 0) {
+      this.pintarMarcador = false;
+    }
   }
 
   sugerencias( busqueda: string | null) {
