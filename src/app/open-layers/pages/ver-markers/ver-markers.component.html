@@ -47,14 +47,25 @@
             <li
               *ngFor="let marcador of marcadores; let i=index"
               class="list-group-item "
-              
             >
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="fs-6">{{ marcador.nombre }}</h6>
-              <button (click)="getMarcadores(i)" type="button" class="btn btn-outline-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 
+                  (click)="animacion( marcador.lat, marcador.log )" 
+                  role="button" 
+                  class="list-group-item-action fs-6"
+                  title="Ver marcador"
+                >
+                  {{ marcador.nombre }}
+                </h6>
+                <button 
+                  (click)="getMarcadores(i)" 
+                  class="btn btn-outline-danger ms-1"
+                  type="button" 
+                  title="Eliminar marcador"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -67,7 +78,7 @@
         [lon]="-76.606411"
         [zoom]="14"
         width="100%"
-        height="600px"
+        height="650px"
       >
         <div *ngIf="pintarMarcador">
           <app-ol-maker
@@ -83,4 +94,4 @@
   </div>
 </div>
 
-*ngFor="let item of items; let i=index"
+

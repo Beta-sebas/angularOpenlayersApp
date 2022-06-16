@@ -34,10 +34,6 @@ export class VerMarkersComponent implements OnInit {
     
   }
 
-  ngAfterViewInit(): void {
-    
-  }
-
   getMarcadores(indice: number){
     console.log(indice);
 
@@ -48,6 +44,10 @@ export class VerMarkersComponent implements OnInit {
     if (this.marcadores.length == 0) {
       this.pintarMarcador = false;
     }
+  }
+
+  animacion( lat: number, lon: number ) {
+    this.mapa.flyToMarker( lon, lat);
   }
 
   sugerencias( busqueda: string | null) {
@@ -87,8 +87,8 @@ export class VerMarkersComponent implements OnInit {
     this.consulta = false;
     this.openLayerService.getMarcador( termino )
     .pipe(
-      tap( ( marcador ) => {
-        console.log(this.marcadores);
+      tap( ( _ ) => {
+        //console.log(this.marcadores);
       })
     )
     .subscribe( ( marcador ) => {

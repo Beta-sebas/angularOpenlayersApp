@@ -33,6 +33,7 @@ export class OlMapComponent implements OnInit {
   @ViewChild('divMap') divMap!: ElementRef<HTMLDivElement>
 
   map!: Map;
+  view!: View;
   popup!: Overlay;
   popupR!: Overlay;
   divpop!: HTMLElement;
@@ -52,14 +53,19 @@ export class OlMapComponent implements OnInit {
       element: this.divpop,
       positioning: 'bottom-center',
       stopEvent: false
-    })
+    });
 
     //Instancia de Overlay
     this.popupR = new Overlay({
       element: this.divpopR,
       positioning: 'bottom-center',
       stopEvent: false
-    })
+    });
+
+    this.view = new View({
+      center:  Proj.fromLonLat([this.lon, this.lat]),
+      zoom: this.zoom 
+    });
 
   }
 
@@ -75,10 +81,7 @@ export class OlMapComponent implements OnInit {
           source: new OSM()
         })
       ],
-      view: new View({
-        center: Proj.fromLonLat([this.lon, this.lat]),
-        zoom: this.zoom
-      })
+      view: this.view
     });
 
     this.map.addOverlay(this.popup);
@@ -90,7 +93,7 @@ export class OlMapComponent implements OnInit {
         return feacture;
       });
       if (feacture) {
-        const coor = toLonLat(e.coordinate)
+        const coor = toLonLat(e.coordinate);
         this.popup.setPosition(e.coordinate);
         this.coordenadas = coor;
       } else {
@@ -157,13 +160,50 @@ export class OlMapComponent implements OnInit {
   setMaker(vector: VectorLayer<any>) {
     this.map.addLayer(vector);
   }
-
+  //Obtener marcadores activos
   getMarcadores( ) {
     return this.map.getLayers().getArray();
   }
-
+  //Eliminar vector del marcador
   deleteLayer(  layer: BaseLayer ) {
     return this.map.removeLayer( layer );
+  }
+
+  flyToMarker( lon: number, lat: number ) {
+    const center = Proj.fromLonLat([lon,lat]);
+    const duration = 1500;
+    const zoom = this.view.getZoom() || 0;
+    let parte = 2;
+    let fin = false;
+
+    function animacion( completa : boolean) {
+      --parte;
+      if (fin) {
+        return;
+      }
+      if (parte === 0 || !completa) {
+        fin = true;
+      }
+    }
+
+    this.view.animate({
+      center,
+      duration,
+    }, 
+      animacion
+    );
+
+    this.view.animate(
+      {
+        zoom: zoom - 1,
+        duration
+      },
+      {
+        zoom: zoom + 1,
+        duration
+      },
+      animacion
+    ); 
   }
 
 }
