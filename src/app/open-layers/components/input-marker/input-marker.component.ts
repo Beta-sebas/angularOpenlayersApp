@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { debounceTime } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, tap } from 'rxjs';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { debounceTime, tap } from 'rxjs';
   styles: [
   ]
 })
-export class InputMarkerComponent implements OnInit {
+export class InputMarkerComponent implements OnChanges, OnInit {
 
   @Input() limpiar: boolean = false;
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();

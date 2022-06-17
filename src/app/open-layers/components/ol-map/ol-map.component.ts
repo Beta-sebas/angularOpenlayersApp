@@ -1,16 +1,15 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
-import Map from 'ol/Map';
-import View from 'ol/View';
-import Overlay from 'ol/Overlay';
-import TileLayer from 'ol/layer/Tile';
-import VectorLayer from 'ol/layer/Vector';
-import XYZ from 'ol/source/XYZ';
-import OSM from 'ol/source/OSM';
-import * as Proj from 'ol/proj'
-import { Coordinate } from 'ol/coordinate';
-import { toLonLat } from 'ol/proj';
 import BaseLayer from 'ol/layer/Base';
+import { Coordinate } from 'ol/coordinate';
+import Map from 'ol/Map';
+import OSM from 'ol/source/OSM';
+import Overlay from 'ol/Overlay';
+import * as Proj from 'ol/proj'
+import TileLayer from 'ol/layer/Tile';
+import { toLonLat } from 'ol/proj';
+import View from 'ol/View';
+import VectorLayer from 'ol/layer/Vector';
 
 export const DEFAULT_HEIGHT = '500px';
 export const DEFAULT_WIDTH = '500px';
@@ -22,7 +21,6 @@ export const DEFAULT_WIDTH = '500px';
 })
 export class OlMapComponent implements OnInit {
 
-  //Inputs para recibir los datos
   @Input() lat   !: number;
   @Input() lon   !: number;
   @Input() zoom  !: number;
@@ -63,8 +61,8 @@ export class OlMapComponent implements OnInit {
     });
 
     this.view = new View({
-      center:  Proj.fromLonLat([this.lon, this.lat]),
-      zoom: this.zoom 
+      center: Proj.fromLonLat([this.lon, this.lat]),
+      zoom: this.zoom
     });
 
   }
@@ -87,6 +85,7 @@ export class OlMapComponent implements OnInit {
     this.map.addOverlay(this.popup);
     this.map.addOverlay(this.popupR);
 
+    //Evento click Izquierdo
     this.map.on('click', (e) => {
       //console.log(e);
       const feacture = this.map.forEachFeatureAtPixel(e.pixel, (feacture) => {
@@ -101,6 +100,7 @@ export class OlMapComponent implements OnInit {
       }
     });
 
+    //Evento click Derecho
     this.map.getViewport().addEventListener('contextmenu', (evt) => {
       evt.preventDefault();
       //console.log(this.map.getEventCoordinate(evt));
@@ -116,6 +116,7 @@ export class OlMapComponent implements OnInit {
 
     });
 
+    //Evento rueda del mouse
     this.map.getViewport().addEventListener('mouseup', (evt) => {
 
       if (evt.button == 1) {
@@ -142,10 +143,6 @@ export class OlMapComponent implements OnInit {
 
   }
 
-  evento(e: MouseEvent) {
-    //console.log(e.button);
-  }
-
   //establecer tamaño del div del map
   setSize() {
     if (this.divMap) {
@@ -161,22 +158,22 @@ export class OlMapComponent implements OnInit {
     this.map.addLayer(vector);
   }
   //Obtener marcadores activos
-  getMarcadores( ) {
+  getMarcadores() {
     return this.map.getLayers().getArray();
   }
   //Eliminar vector del marcador
-  deleteLayer(  layer: BaseLayer ) {
-    return this.map.removeLayer( layer );
+  deleteLayer(layer: BaseLayer) {
+    return this.map.removeLayer(layer);
   }
-
-  flyToMarker( lon: number, lat: number ) {
-    const center = Proj.fromLonLat([lon,lat]);
+  //Animación para marcadores
+  flyToMarker(lon: number, lat: number) {
+    const center = Proj.fromLonLat([lon, lat]);
     const duration = 1500;
     const zoom = this.view.getZoom() || 0;
     let parte = 2;
     let fin = false;
 
-    function animacion( completa : boolean) {
+    function animacion(completa: boolean) {
       --parte;
       if (fin) {
         return;
@@ -189,7 +186,7 @@ export class OlMapComponent implements OnInit {
     this.view.animate({
       center,
       duration,
-    }, 
+    },
       animacion
     );
 
@@ -203,7 +200,11 @@ export class OlMapComponent implements OnInit {
         duration
       },
       animacion
-    ); 
+    );
   }
+
+   /* evento(e: MouseEvent) {
+    //console.log(e.button);
+  } */
 
 }

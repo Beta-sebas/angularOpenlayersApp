@@ -1,14 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import VectorSource from 'ol/source/Vector';
-import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-//import Icon from 'ol/style/Icon';
-import Text from 'ol/style/Text';
-//import Style from 'ol/style/Style';
-import { Icon, Style } from 'ol/style';
 import * as Proj from 'ol/proj';
+import { Icon, Style } from 'ol/style';
+import VectorSource from 'ol/source/Vector';
+import VectorLayer from 'ol/layer/Vector';
 
 import { OlMapComponent } from '../ol-map/ol-map.component';
 
@@ -68,6 +65,4 @@ export class OlMakerComponent implements OnInit {
       }, 100 )
     }
   }
-
-
 }

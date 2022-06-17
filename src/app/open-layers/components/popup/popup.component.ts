@@ -1,7 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Coordinate } from 'ol/coordinate';
-
-
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -9,20 +6,13 @@ import { Coordinate } from 'ol/coordinate';
   styles: [
   ]
 })
-export class PopupComponent implements OnInit, OnChanges {
+export class PopupComponent implements OnChanges {
 
-  /* @Input() Lat!: number;
-  @Input() Lon!: number; */
   @Input() coordenadas!: any;
-
   Lat!: number ;
   Lon!: number ; 
 
   constructor() { }
-
-  ngOnInit(): void {
- 
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
      

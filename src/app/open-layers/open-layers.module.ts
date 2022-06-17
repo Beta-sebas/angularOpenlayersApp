@@ -9,6 +9,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { VerMarkersComponent } from './pages/ver-markers/ver-markers.component';
 import { InputMarkerComponent } from './components/input-marker/input-marker.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OlMapSearchComponent } from './components/ol-map-search/ol-map-search.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     OlMakerComponent,
     PopupComponent,
     VerMarkersComponent,
-    InputMarkerComponent
+    InputMarkerComponent,
+    OlMapSearchComponent
   ],
   imports: [
     CommonModule,
