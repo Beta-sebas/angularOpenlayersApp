@@ -17,9 +17,31 @@ Características de la aplicación
 
 _Nuevo componente ol-map-search_
 
-Permite realizar la busqueda de marcadores desde un backend, a su vez permite eliminarlos y visualizarlos con una animación.
+Permite realizar la busqueda de marcadores mediante sugerencias desde un backend, a su vez permite eliminarlos y visualizarlos con una animación.
+
+_Nuevo componente input-marker_
+
+Componente que trabaja en conjunto con _ol-map-search_ para realizar busquedas, utiliza un Debounce (Rxjs) para enviar datos y mostrar las sugerencias. 
 
 ## Componentes 
+
+### Component _input-marker_ 
+
+Inputs
+
+* limpiar: boolean (Bandera utilizada para limpiar el input)
+
+Ouputs
+
+* onDebounce: EventEmitter<string> (Emite el campo ingresado hacia otro componente con un delay de 400ms)
+
+
+### Component OlControlComponent Inputs
+
+* control: string (Control name. Can be FullScreen, MousePosition, OverviewMap, ScaleLine, ZoomSlider or ZoomToExtent)
+* options: object (Options for control)
+
+---
 
 
 
