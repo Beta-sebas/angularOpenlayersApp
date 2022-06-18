@@ -27,6 +27,8 @@ Componente que trabaja en conjunto con _ol-map-search_ para realizar busquedas, 
 
 ### Component _input-marker_ 
 
+Componente que consta de un input que emite información con delay hacia donde se requiera. 
+
 Inputs
 
 * limpiar: boolean (Bandera utilizada para limpiar el input)
@@ -35,14 +37,39 @@ Ouputs
 
 * onDebounce: EventEmitter<string> (Emite el campo ingresado hacia otro componente con un delay de 400ms)
 
+### Component _ol-maker_
+  
+Componente encargado de crear la vectolayer que contiene un marcador.
+  
+Inputs
 
-### Component OlControlComponent Inputs
+* lat: number (Latitud del marcador)  (Opcional)
+* lon: number (Longitud del marcador) (Opcional)
+* anchor: number[] (Punto de anclaje del icono) (Opcional) 
+* icon: string (recurso utilizado para el icono) (Opcional) 
+* text: string (Texto mostrado por el icono) (Opcional) 
 
-* control: string (Control name. Can be FullScreen, MousePosition, OverviewMap, ScaleLine, ZoomSlider or ZoomToExtent)
-* options: object (Options for control)
+Por defecto crea un marcador de ejemplo.
+  
+### Component _ol-map_ 
 
----
+_Componente principal_ encargado de implentar un mapa totalmente funcional e interactivo. 
+  
+Inputs
 
+* lat: number (Latitud para centrar el mapa) 
+* lon: number (Longitud para centrar el mapa)
+* zoom: number (Nivel de zoom para inicializar el mapa)
+* width: string | number (Ancho del mapa) (Opcional)
+* height: string | number (Alto del mapa) (Opcional) 
+  
+### Component _popup_
+  
+Componente encargado de crear el html necesario para el popup que muestra las coordenadas.
+  
+Inputs
+
+* coordenadas: any (Coordenadas para el popup)
 
 
 ## Instalación ⚙️
