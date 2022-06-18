@@ -62,6 +62,10 @@ Inputs
 * zoom: number (Nivel de zoom para inicializar el mapa)
 * width: string | number (Ancho del mapa) (Opcional)
 * height: string | number (Alto del mapa) (Opcional) 
+ 
+### Component _ol-map-search_
+  
+Componente que implementa un mapa con un menu lateral izquierdo para la busqueda de marcadores (Se necesita un backend [apirest-angularOpenLayersApp](https://github.com/Beta-sebas/apirest-angularOpenLayersApp))
   
 ### Component _popup_
   
@@ -111,6 +115,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## App Deploy 💻
 [OpenlayersApp v1.0](https://adminspring-openlayers-markers.herokuapp.com/openlayer/markers)
+```
 [OpenlayersApp v0.1.0](https://beta-sebas.github.io/angularOpenlayersApp/)
 
 ## Autor ✒️
