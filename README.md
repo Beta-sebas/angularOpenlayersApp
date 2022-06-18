@@ -120,4 +120,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Autor ✒️
 * **Juan Sebastian Betancourt**  - [Beta-sebas](https://github.com/Beta-sebas)
 Contact: jsebas.95@hotmail.com
-   ---
+  
