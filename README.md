@@ -12,22 +12,33 @@ Características de la aplicación
 ![1](https://user-images.githubusercontent.com/80282099/170772571-34294ac7-b0cc-4054-946b-bba835ca2587.png)
 ![2](https://user-images.githubusercontent.com/80282099/170772591-8b4edce4-7099-4adb-92e2-a5b42d32d50f.png)
 
+## Cambios
+###_v1.0_
+
+_Nuevo componente ol-map-search_
+```
+Permite realizar la busqueda de marcadores desde un backend, a su vez permite eliminarlos y visualizarlos con una animación.
+
+## Componentes 
+
+
+
 ## Instalación ⚙️
 
 Install dependencies:
 
-In your Angular project folder.
+En la carpeta del proyecto, ejecuta.
 
 * _npm i ol_
 * _npm i --save-dev @types/ol_
 
-## Use it like a Module in a project
+## Usar como un módulo en proyectos existentes
 
-Move open-layers folder to app folder in your Angular project. Import OpenLayersModule Module in modules when need the openLayers Map:
+Mueva la carpeta open-layers a la carpeta de su proyecto Angular. Import OpenLayersModule en el módulo de su aplicación que lo utilizará :
 
 import { OpenLayersModule } from './open-layers/open-layers.module';
 
-Finally, on index.html import OL css:
+Finalmente, en su index.html import OL css:
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
 
@@ -50,7 +61,8 @@ Ejecuta `ng build` para desplegar la app. Que se guardará en el directorio `dis
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## App Deploy 💻
-[OpenlayersApp](https://beta-sebas.github.io/angularOpenlayersApp/)
+[OpenlayersApp v1.0](https://adminspring-openlayers-markers.herokuapp.com/openlayer/markers)
+[OpenlayersApp v0.1.0](https://beta-sebas.github.io/angularOpenlayersApp/)
 
 ## Autor ✒️
 * **Juan Sebastian Betancourt**  - [Beta-sebas](https://github.com/Beta-sebas)
