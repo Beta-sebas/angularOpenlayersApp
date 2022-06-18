@@ -13,7 +13,7 @@ Características de la aplicación
 ![2](https://user-images.githubusercontent.com/80282099/170772591-8b4edce4-7099-4adb-92e2-a5b42d32d50f.png)
 
 ## Cambios
-###_v1.0_
+_v1.0_
 
 _Nuevo componente ol-map-search_
 ```
