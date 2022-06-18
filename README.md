@@ -14,9 +14,9 @@ Características de la aplicación
 
 ## Cambios
 _v1.0_
-
+---
 _Nuevo componente ol-map-search_
-```
+---
 Permite realizar la busqueda de marcadores desde un backend, a su vez permite eliminarlos y visualizarlos con una animación.
 
 ## Componentes 
