@@ -114,9 +114,10 @@ Ejecuta `ng build` para desplegar la app. Que se guardará en el directorio `dis
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## App Deploy 💻
-[OpenlayersApp v1.0](https://adminspring-openlayers-markers.herokuapp.com/openlayer/markers)
-```
-[OpenlayersApp v0.1.0](https://beta-sebas.github.io/angularOpenlayersApp/)
+* [OpenlayersApp v1.0](https://adminspring-openlayers-markers.herokuapp.com/openlayer/markers)
+* [OpenlayersApp v0.1.0](https://beta-sebas.github.io/angularOpenlayersApp/)
 
 ## Autor ✒️
 * **Juan Sebastian Betancourt**  - [Beta-sebas](https://github.com/Beta-sebas)
+Contact: jsebas.95@hotmail.com
+   ---
